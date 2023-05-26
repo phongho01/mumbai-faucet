@@ -1,0 +1,40 @@
+.container {
+    margin-top: 44px;
+    width: 900px;
+    padding: 36px;
+    border-radius: 24px;
+    background: #fff;
+
+    .input-control {
+        display: flex;
+        align-items: center;
+
+        input {
+            height: 21px;
+            flex: 1;
+            margin-right: 8px;
+            padding: 12px;
+            color: #000;
+            border: 1px solid #caced4;
+            border-radius: 8px;
+
+            &:focus {
+                border-color: #86b7fe;
+                outline: none;
+                border-width: 2px;
+            }
+        }
+
+        button {
+            width: 200px;
+            font-weight: bold;
+            font-size: 20px;
+            background: #3f51b8;
+            border-radius: 8px;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}

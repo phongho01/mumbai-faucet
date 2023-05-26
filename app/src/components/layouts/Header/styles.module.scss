@@ -1,0 +1,32 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    padding: 8px 20px;
+    background: linear-gradient(269.26deg,#ac35a0 6.59%,#2f42aa 94.04%);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    span {
+        float: right;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    button {
+        height: 40px;
+        border: none;
+        outline: none;
+        padding: 0 20px;
+        background-color: #df6c2d;
+        color: #fff;
+        font-weight: bold;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

@@ -61,7 +61,7 @@ function App() {
   return (
     <div className="App">
       <Header handleAccountsChanged={handleAccountsChanged} />
-      <Body />
+      <Body handleAccountsChanged={handleAccountsChanged} />
     </div>
   );
 }

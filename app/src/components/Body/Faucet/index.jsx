@@ -11,7 +11,7 @@ import { timeAgo } from '@src/utils/timeAgo';
 export default function Faucet({ handleAccountsChanged }) {
   const account = useSelector((state) => state.account);
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [transaction, setTransaction] = useState([]);
 

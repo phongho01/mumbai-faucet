@@ -15,6 +15,7 @@
   "dependencies": {
     "@ethersproject/contracts": "^5.7.0",
     "@ethersproject/providers": "^5.7.2",
+    "axios": "^1.4.0",
     "cors": "^2.8.5",
     "cron": "^2.3.0",
     "dotenv": "^16.0.3",

@@ -1,6 +1,9 @@
+require('dotenv').config();
 const Faucet = require('../models/Faucet.schema');
 const { NETWORK } = require('../constants');
-const { sendTransaction } = require('../utils/ethers');
+const { sendTransaction, getBalance } = require('../utils/ethers');
+const { sendMessage } = require('../utils/telegram');
+const { ethers } = require('ethers');
 
 class OrderController {
   async faucet(req, res) {
@@ -16,6 +19,13 @@ class OrderController {
         return res.status(400).send();
       }
 
+      const remainingBalance = await getBalance(network, process.env.ACCOUNT_ADDRESS);
+      if (remainingBalance.lte(ethers.utils.parseEther(`${process.env.FAUCET_AMOUNT}`))) {
+        const text = `Remaining balance of account ${process.env.ACCOUNT_ADDRESS} is not enough to faucet. Please deposit to continue.`
+        await sendMessage(text);
+        res.statusMessage = 'Remaining balance is not enough';
+        return res.status(400).send();
+      }
       console.log('===== SEND MATIC =====');
       const receipt = await sendTransaction(network, account);
       const newFaucet = await Faucet.create({
@@ -43,7 +53,6 @@ class OrderController {
       };
       const faucets = await Faucet.find(conditions).sort({ createdAt: -1 });
       res.json(faucets);
-
     } catch (error) {
       console.log('error', error);
       res.sendStatus(500);

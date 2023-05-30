@@ -7,6 +7,7 @@ import ReactLoading from 'react-loading';
 import { faucet, getFaucet } from '@api/faucet.api';
 import { NETWORK } from '@src/constants';
 import { timeAgo } from '@src/utils/timeAgo';
+import toast from '@src/utils/toast';
 
 export default function Faucet({ handleAccountsChanged }) {
   const account = useSelector((state) => state.account);
@@ -23,6 +24,7 @@ export default function Faucet({ handleAccountsChanged }) {
       console.log('click');
       setIsLoading(false);
     } catch (error) {
+      toast.error('An error has been occur');
       setIsLoading(false);
     }
   };

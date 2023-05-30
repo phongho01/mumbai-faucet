@@ -15,6 +15,7 @@ const toastify = {
     toast.success(msg, options);
   },
   error: (msg) => {
+    console.log('toast', msg)
     toast.error(msg, options);
   },
   warning: (msg) => {

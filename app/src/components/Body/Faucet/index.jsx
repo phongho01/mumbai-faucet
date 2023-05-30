@@ -24,7 +24,8 @@ export default function Faucet({ handleAccountsChanged }) {
       console.log('click');
       setIsLoading(false);
     } catch (error) {
-      toast.error('An error has been occur');
+      console.log(error)
+      toast.error(error?.response?.statusText || 'An error has been occur');
       setIsLoading(false);
     }
   };

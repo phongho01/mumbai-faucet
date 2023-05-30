@@ -4,6 +4,8 @@ import Header from '@components/layouts/Header';
 import Body from '@components/Body';
 import { setAccount } from '@src/app/slice/account';
 import './App.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -60,6 +62,7 @@ function App() {
 
   return (
     <div className="App">
+      <ToastContainer />
       <Header handleAccountsChanged={handleAccountsChanged} />
       <Body handleAccountsChanged={handleAccountsChanged} />
     </div>

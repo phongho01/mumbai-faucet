@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ethersproject/bytes": "^5.7.0",
+    "@metamask/jazzicon": "^2.0.0",
     "@paraswap/sdk": "^6.2.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@usedapp/core": "^1.2.9",

@@ -22,16 +22,16 @@ class OrderController {
       const remainingBalance = await getBalance(network, process.env.ACCOUNT_ADDRESS);
       if (remainingBalance.lte(ethers.utils.parseEther(`${process.env.FAUCET_AMOUNT}`))) {
         const text = `Remaining balance of account ${process.env.ACCOUNT_ADDRESS} is not enough to faucet. Please deposit to continue.`
-        await sendMessage(text);
+        sendMessage(text);
         res.statusMessage = 'Remaining balance is not enough';
         return res.status(400).send();
       }
       console.log('===== SEND MATIC =====');
-      const receipt = await sendTransaction(network, account);
+      const tx = await sendTransaction(network, account);
       const newFaucet = await Faucet.create({
         network,
         account,
-        txHash: receipt.transactionHash,
+        txHash: tx.hash,
         amount: process.env.FAUCET_AMOUNT,
       });
 

@@ -13,14 +13,12 @@ const getBalance = async (network, account) => {
 
 const sendTransaction = async (network, to) => {
   const provider = new ethers.providers.JsonRpcProvider(RPC_URL[network]);
-  const wallet = new ethers.Wallet(process.env.ACCOUNT_PRIVATE_KEY, provider);
+  const wallet = new ethers.Wallet(process.env.ACCOUNT_PRIVATE_KEY, provider);  
 
-  const tx = await wallet.sendTransaction({
+  return wallet.sendTransaction({
     to: to,
     value: ethers.utils.parseEther(`${process.env.FAUCET_AMOUNT}`),
   });
-
-  return tx.wait();
 };
 
 module.exports = {

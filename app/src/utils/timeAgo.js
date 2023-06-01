@@ -1,26 +1,25 @@
 export const timeAgo = (input) => {
-  var seconds = Math.floor((Date.now() - input) / 1000);
+  const seconds = Math.floor((Date.now() - input) / 1000);
+  let amount, unit;
 
-  var interval = seconds / 31536000;
-
-  if (interval > 1) {
-    return Math.floor(interval) + ' years ago';
+  if (seconds / 31536000 >= 1) {
+    amount = Math.floor(seconds / 31536000);
+    unit = 'year';
+  } else if (seconds / 2592000 >= 1) {
+    amount = Math.floor(seconds / 2592000);
+    unit = 'month';
+  } else if (seconds / 86400 >= 1) {
+    amount = Math.floor(seconds / 86400);
+    unit = 'day';
+  } else if (seconds / 3600 >= 1) {
+    amount = Math.floor(seconds / 3600);
+    unit = 'hour';
+  } else if (seconds / 60 >= 1) {
+    amount = Math.floor(seconds / 60);
+    unit = 'minute';
+  } else {
+    amount = Math.floor(seconds);
+    unit = 'second';
   }
-  interval = seconds / 2592000;
-  if (interval > 1) {
-    return Math.floor(interval) + ' months ago';
-  }
-  interval = seconds / 86400;
-  if (interval > 1) {
-    return Math.floor(interval) + ' days ago';
-  }
-  interval = seconds / 3600;
-  if (interval > 1) {
-    return Math.floor(interval) + ' hours ago';
-  }
-  interval = seconds / 60;
-  if (interval > 1) {
-    return Math.floor(interval) + ' minutes ago';
-  }
-  return Math.floor(seconds) + ' seconds ago';
+  return amount + `  ${unit}${amount === 1 ? '' : 's'} ago`;
 };

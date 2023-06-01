@@ -26,7 +26,6 @@ class OrderController {
         res.statusMessage = 'Remaining balance is not enough';
         return res.status(400).send();
       }
-      console.log('===== SEND MATIC =====');
       const tx = await sendTransaction(network, account);
       const newFaucet = await Faucet.create({
         network,

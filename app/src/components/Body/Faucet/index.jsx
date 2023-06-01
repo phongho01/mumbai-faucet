@@ -21,7 +21,7 @@ export default function Faucet({ handleAccountsChanged }) {
       setIsLoading(true);
       const { data } = await faucet({ network: NETWORK.MUMBAI, account });
       setTransaction([data, ...transaction]);
-      console.log('click');
+      toast.success('Faucet successfully');
       setIsLoading(false);
     } catch (error) {
       console.log(error)

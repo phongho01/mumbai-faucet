@@ -8,27 +8,18 @@ const { ethers } = require('ethers');
 class OrderController {
   async faucet(req, res) {
     try {
-      const { network, account } = req.body;
-      if (!network || !account) {
-        res.statusMessage = 'Invalid input';
-        return res.status(400).send();
-      }
-
-      if (!Object.values(NETWORK).includes(network)) {
-        res.statusMessage = 'Invalid network';
-        return res.status(400).send();
-      }
-
-      const remainingBalance = await getBalance(network, process.env.ACCOUNT_ADDRESS);
+      const { account } = req.body;
+      const remainingBalance = await getBalance(process.env.ACCOUNT_ADDRESS);
       if (remainingBalance.lte(ethers.utils.parseEther(`${process.env.FAUCET_AMOUNT}`))) {
         const text = `Remaining balance of account ${process.env.ACCOUNT_ADDRESS} is not enough to faucet. Please deposit to continue.`
         sendMessage(text);
         res.statusMessage = 'Remaining balance is not enough';
         return res.status(400).send();
       }
-      const tx = await sendTransaction(network, account);
+      
+      const tx = await sendTransaction(account);
       const newFaucet = await Faucet.create({
-        network,
+        network: NETWORK.MUMBAI,
         account,
         txHash: tx.hash,
         amount: process.env.FAUCET_AMOUNT,

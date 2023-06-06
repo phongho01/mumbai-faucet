@@ -19,7 +19,7 @@ export default function Faucet({ handleAccountsChanged }) {
   const handleClick = async () => {
     try {
       setIsLoading(true);
-      const { data } = await faucet({ network: NETWORK.MUMBAI, account });
+      const { data } = await faucet({ account });
       setTransaction([data, ...transaction]);
       toast.success('Faucet successfully');
       setIsLoading(false);

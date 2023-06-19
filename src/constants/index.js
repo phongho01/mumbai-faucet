@@ -1,7 +1,7 @@
 const COMMANDS = [
   {
     name: 'faucet',
-    description: 'Request Mumbai Polygon (MATIC)!',
+    description: 'Request 0.5 Mumbai Polygon (MATIC)!',
     options: [
       {
         name: 'address',
@@ -10,6 +10,10 @@ const COMMANDS = [
         description: 'Address of account will be received MATIC',
       },
     ],
+  },
+  {
+    name: 'help',
+    description: 'Do /help for the commands list & support',
   },
 ];
 

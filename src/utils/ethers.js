@@ -3,7 +3,9 @@ const { ethers } = require('ethers');
 const { sendMessage } = require('./telegram');
 const { diffTime } = require('./time');
 
-const RPC_URL = process.env.MUMBAI_RPC_URL;
+const RPC_URL = process.env.KURA_RPC_URL;
+const EXPLORER_URL = process.env.KURA_EXPLORER;
+const CURRENCY_SYMBOL = process.env.KURA_SYMBOL;
 
 const isAddress = (address) => {
   return ethers.utils.isAddress(address);
@@ -18,7 +20,6 @@ const sendTransaction = async (to) => {
   const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
   const wallet = new ethers.Wallet(process.env.ACCOUNT_PRIVATE_KEY, provider);
 
-  console.log('===== START SENDING MATIC =====');
   return wallet.sendTransaction({
     to: to,
     value: ethers.utils.parseEther(`${process.env.FAUCET_AMOUNT}`),
@@ -44,7 +45,7 @@ const faucet = async (author, address, redis) => {
       NX: true,
     };
     const tx = await sendTransaction(address);
-    res = `<@${author}>, ${process.env.FAUCET_AMOUNT} MATIC are heading to your wallet, check https://mumbai.polygonscan.com/tx/${tx.hash} !`;
+    res = `<@${author}>, ${process.env.FAUCET_AMOUNT} ${CURRENCY_SYMBOL} are heading to your wallet, check ${EXPLORER_URL}/tx/${tx.hash} !`;
     redis.set(author, Date.now(), redisOptions);
     redis.set(address, Date.now(), redisOptions);
   }
